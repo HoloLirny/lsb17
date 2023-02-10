@@ -36,7 +36,7 @@ int main(){
 void showData(double *d,int n,int m){
 	cout << fixed << setprecision(2);
 	for(int i=0;i<n*m;i++){
-		cout<<d[i];
+		cout<<*(d+i);
 		if(i%m==m-1){cout<<endl;}
 		else cout<<" ";
 	}
@@ -44,8 +44,8 @@ void showData(double *d,int n,int m){
 
 void randData(double *d,int n,int m){
 	for(int i=0;i<n*m;i++){
-		d[i]=rand()%101;
-		d[i]/=100;
+		*(d+i)=rand()%101;
+		*(d+i)/=100;
 	}
 }
 
@@ -55,20 +55,20 @@ void randData(double *d,int n,int m){
 			for(int j=0;j<m;j++){
 				l+=*((d+j)+(m*i));
 			}
-			s1[i]=l;
+			*(s1+i)=l;
 		}
 	}
 
 void findColSum(const double *d,double *s2,int n,int m){
 	int x,y=0;
-	s2[y]=0;
+	*s2=0;
 	for(int i=0;i<m;i++){
 		x=i;
 		for(int j=0;j<n;j++){
-			s2[y]+=d[x];
+			*(s2+y)+=*(d+x);
 			x+=m;
 		}
 		y++;
-		s2[y]=0;
+		*(s2+y)=0;
 	}
 }
